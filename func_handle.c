@@ -15,10 +15,10 @@ void func_handle(char **av)
     char *token;
 
     if (!input_file)
-        getline(stderr, "Error: Can't open file %s\n", file);
+        fprintf(stderr, "Error: Can't open file %s\n", file);
     else
     {
-        while (getline(buffer, BUFFSIZE, input_file) != NULL)
+        while (getline(buffer, BUFFSIZE, input_file) == 1)
         {
             token = strtok(buffer, delim);
             while (token != NULL)
