@@ -1,5 +1,5 @@
 #include "monty.h"
-#define BUFFSIZE 0
+#define BUFFSIZE 1024
 /**
  * func_handle - function that handles a file
  * @ac: parameter
@@ -9,21 +9,19 @@
 void func_handle(char **av)
 {
 	const char *delim = " ";
-	/* const char *file = "file.txt";
-	   FILE *input_file = fopen(file, "r"); */
-	char *buffer = NULL;
+	/* const char *file = "file.txt";*/
+	FILE *fd = fopen(*av, "r");
+	char buffer [BUFFSIZE];
 	char *token;
-	int fd;
-	ssize_t x;
+	char *x;
 
-	fd = open(*av, O_RDONLY);
-	x = getline(&buffer, &BUFFSIZE, fd);
+	x = fgets(buffer, BUFFSIZE, fd);
 
 	if (!fd)
 		fprintf(stderr, "Error: Can't open file %s\n", *av);
 	else
 	{
-		while (x != -1)
+		while (x != NULL)
 		{
 			token = strtok(buffer, delim);
 			while (token != NULL)
