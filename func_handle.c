@@ -10,7 +10,7 @@ void func_handle(char *av)
 {
 	const char *delim = " ";
 	/* const char *file = "file.txt";*/
-	FILE *fd = fopen(*av, "r");
+	FILE *fd = fopen(av, "r");
 	char buffer [BUFFSIZE];
 	char *token;
 	char *x;
@@ -18,7 +18,7 @@ void func_handle(char *av)
 	x = fgets(buffer, BUFFSIZE, fd);
 
 	if (!fd)
-		fprintf(stderr, "Error: Can't open file %s\n", *av);
+		fprintf(stderr, "Error: Can't open file %s\n", av);
 	else
 	{
 		while (x != NULL)
