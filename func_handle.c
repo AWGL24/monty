@@ -6,7 +6,7 @@
  * @av: parameter
  * Return: 0
  */
-void func_handle(char **av)
+void func_handle(char *av)
 {
 	const char *delim = " ";
 	/* const char *file = "file.txt";*/
