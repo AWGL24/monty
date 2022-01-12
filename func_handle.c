@@ -6,7 +6,7 @@
  * @av: parameter
  * Return: 0
  */
-int func_handle(int ac, char **av)
+void func_handle(char **av)
 {
     const char *delim = " ";
     const char *file = "file.txt";
@@ -32,5 +32,4 @@ int func_handle(int ac, char **av)
             perror("Error:");
         fclose(input_file);
     }
-    return (0);
 }
