@@ -1,8 +1,8 @@
 #include "monty.h"
 /**
- *
- *
- *
+ * node_creator - function that creates a new node
+ * @n: node data
+ * Return: new created node
  */
 stack_t *node_creator(int n)
 {
