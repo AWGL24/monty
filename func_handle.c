@@ -1,5 +1,5 @@
 #include "monty.h"
-#define BUFFSIZE 1024
+#define BUFFSIZE 0
 /**
  * func_handle - function that handles a file
  * @ac: parameter
@@ -8,28 +8,32 @@
  */
 void func_handle(char **av)
 {
-    const char *delim = " ";
-    const char *file = "file.txt";
-    FILE *input_file = fopen(file, "r");
-    char buffer [BUFFSIZE];
-    char *token;
+	const char *delim = " ";
+	/* const char *file = "file.txt";
+	   FILE *input_file = fopen(file, "r"); */
+	char *buffer = NULL;
+	char *token;
+	int fd;
+	ssize_t x;
 
-    if (!input_file)
-        fprintf(stderr, "Error: Can't open file %s\n", file);
-    else
-    {
-        while (getline(buffer, BUFFSIZE, input_file) == 1)
-        {
-            token = strtok(buffer, delim);
-            while (token != NULL)
-            {
-                printf("%s\n", token);
-                token = strtok(NULL, delim);
-            }
-            
-        }
-        if (ferror(input_file))
-            perror("Error:");
-        fclose(input_file);
-    }
+	fd = open(*av, O_RDONLY);
+	x = getline(&buffer, &BUFFSIZE, fd);
+
+	if (!fd)
+		fprintf(stderr, "Error: Can't open file %s\n", *av);
+	else
+	{
+		while (x != -1)
+		{
+			token = strtok(buffer, delim);
+			while (token != NULL)
+			{
+				printf("%s\n", token);
+				token = strtok(NULL, delim);
+			}
+		}
+		if (ferror(fd))
+			perror("Error:");
+		fclose(fd);
+	}
 }
