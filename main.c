@@ -10,7 +10,7 @@ int main(int ac, char **av)
         func_handle(av[1]);
     else
     {
-        dprintf("Error: Can't open file %s\n", av[1]);
+        printf("Error: Can't open file %s\n", av[1]);
         exit(EXIT_FAILURE);
     }
     return (0);
