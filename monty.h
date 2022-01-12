@@ -41,5 +41,5 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 stack_t *node_creator(int n);
-void func_handle(char **av);
+void func_handle(char *av);
 #endif /* MONTY_H */
