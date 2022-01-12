@@ -1,8 +1,8 @@
 #include "monty.h"
 int value;
 /**
- *
- *
+ * _push - function that pushes an element to the stack
+ * @stack: 
  *
  */
 void _push(stack_t **stack, unsigned int line_num)
