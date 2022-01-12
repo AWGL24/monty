@@ -3,14 +3,13 @@
  *
  *
  */
-void _pint(stack_t )
+void _pint(stack_t **stack)
 {
     if (stack == NULL || *stack == NULL)
     {
-        print ("error")
-            exit (FAILURE)
+        printf("error");
+            exit(EXIT_FAILURE);
 
     }
-    print(""%i" (*stack)->n)
-
+    printf("%i", (*stack)->n);
 }
