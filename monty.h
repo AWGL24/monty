@@ -40,6 +40,9 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
 stack_t *node_creator(int n);
 void func_handle(char *av);
+void freeMalloc(stack_t **stack);
+
 #endif /* MONTY_H */
