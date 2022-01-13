@@ -1,5 +1,6 @@
-#ifndef MONTY_H
-#define MONTY_H
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -9,7 +10,7 @@
 #include <unistd.h>
 #include <string.h>
 
-extern int value;
+/*extern int value;*/
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,8 +42,8 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-stack_t *node_creator(int n);
+/*stack_t *node_creator(int n);*/
 void func_handle(char *av);
-void freeMalloc(stack_t **stack);
+/*void freeMalloc(stack_t **stack);*/
 
-#endif /* MONTY_H */
+#endif /* _GNU_SOURCE */
