@@ -7,16 +7,20 @@
  * @av: parameter
  * Return: 0
  */
+
+void free_grid(char **grid);
+
 void func_handle(char *av)
 {
-	const char *delim = " \n\t\r";
+	const char *delim = "\n";
 	FILE *fd = fopen(av, "r");
 	char *buffer = NULL;
-	char *token;
+	char **token = (char **)malloc(1024 * sizeof(char *));
+	char *token_2 = NULL;
+	char *str = NULL;
 	size_t BUFFSIZE = 0;
-	ssize_t x;
+	int i = 0;
 
-	x = getline(&buffer, &BUFFSIZE, fd);
 
 	if (!fd)
 	{
@@ -25,18 +29,41 @@ void func_handle(char *av)
 	}
 	else
 	{
-		if (x != -1)
+		while (getline(&buffer, &BUFFSIZE, fd) != -1)
 		{
-			token = strtok(buffer, delim);
-			while (token != NULL)
+			token[i] = strtok(buffer, delim);
+			while (token[i] != NULL)
 			{
-				printf("%s\n", token);
-				token = strtok(NULL, delim);
+				str = token[i];
+				printf("%s: This is from token[i]/str\n\n", str);
+				token_2 = strtok(str, " ");
+				while (token_2 != NULL)
+				{
+					printf("New token_2 values:\n");
+					printf("%s\n\n", token_2);
+					token_2 = strtok(NULL, " ");
+				}
+				token[i] = strtok(NULL, delim);
+				i++;
 			}
 		}
 		if (ferror(fd))
 			perror("Error:");
-		fclose(fd);
-		free(buffer);
 	}
+	free_grid(token);
+	free(token_2);
+	fclose(fd);
+}
+
+void free_grid(char **grid)
+{
+	int i = 0;
+
+	while (grid[i] != NULL && grid[i + 1] != NULL )
+	{
+		printf("%s\n", grid[i]);
+		free(grid[i]);
+		i++;
+	}
+	free(grid);
 }
