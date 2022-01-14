@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <string.h>
 
-/*extern int value;*/
+extern int value;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -42,8 +42,19 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/*stack_t *node_creator(int n);*/
+typedef struct global_s
+{
+	char *func;
+	int num;
+	unsigned int lines;
+	stack_t **head;
+} global_v;
+
+extern global_v global;
+
 void func_handle(char *av);
+int get_func_op(stack_t **stack, char *func, unsigned int line);
+void _push(stack_t **stack, unsigned int line);
 /*void freeMalloc(stack_t **stack);*/
 
 #endif /* _GNU_SOURCE */
