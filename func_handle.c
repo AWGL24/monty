@@ -18,6 +18,7 @@ void func_handle(char *av)
 	size_t BUFFSIZE = 0;
 	stack_t *head = NULL;
 	unsigned int line = 1;
+	int num = 0;
 
 	if (!fd)
 	{
@@ -29,27 +30,28 @@ void func_handle(char *av)
 		while (getline(&buffer, &BUFFSIZE, fd) != -1)
 		{
 			token = strtok(buffer, delim);
-			while (token != NULL)
+			/*printf("Line number is: %d\n", line);
+			printf("token is: %s\n", token);*/
+			if (token[0] == '#')
 			{
-				if (token[0] == '#')
-				{
-					continue;
-				}
-				if (strncmp(token, "push", 4) == 0)
-				{
-					printf("Hi\n");
-					printf("%s\n", token);
-					token = strtok(NULL, delim);
-					printf("%s\n", token);
-					_push(&head, line);
-				}
-				else
-				{
-					get_func_op(&head, token, line);
-				}
+				continue;
+				line++;
+			}
+			else if (strncmp(token, "push", 4) == 0)
+			{
+				/*printf("Hi\n");
+				  printf("%s\n", token);*/
+				token = strtok(NULL, delim);
+				/*printf("%s\n", token);*/
+				num = atoi(token);
+				_push(&head, num);
+			}
+			else
+			{
+				/*printf("Before get_func_op token is: %s\n", token);*/
+				get_func_op(&head, token, line);
 			}
 		}
-
 		if (ferror(fd))
 		{
 			perror("Error:");
@@ -60,14 +62,14 @@ void func_handle(char *av)
 }
 
 /*void free_grid(char **grid)
-{
-	int i = 0;
+  {
+  int i = 0;
 
-	while (grid[i] != NULL && grid[i + 1] != NULL )
-	{
-		printf("%s\n", grid[i]);
-		free(grid[i]);
-		i++;
-	}
-	free(grid);
-}*/
+  while (grid[i] != NULL && grid[i + 1] != NULL )
+  {
+  printf("%s\n", grid[i]);
+  free(grid[i]);
+  i++;
+  }
+  free(grid);
+  }*/
