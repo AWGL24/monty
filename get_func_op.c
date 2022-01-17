@@ -4,11 +4,11 @@ int get_func_op(stack_t **stack, char *func, unsigned int line)
 {
 	int x = 0;
 
-	printf("%s\n", func);
+	/*printf("%s\n", func);*/
 	instruction_t funcs[] = {
 		{"push", _push},
-		/*{"pall", pall},
-		{"pint", pint},
+		{"pall", pall},
+		/*{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
 		{"nop", nop},*/
