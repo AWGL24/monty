@@ -9,12 +9,22 @@
 
 int main(int ac, char **av)
 {
-    if (ac == 2)
-        func_handle(av[1]);
-    else
-    {
-        printf("Error: Can't open file %s\n", av[1]);
-        exit(EXIT_FAILURE);
-    }
-    return (0);
+	FILE *fd;
+
+	if (ac == 2)
+	{
+		fd = fopen(av[1], "r");
+		if (!fd)
+		{
+			fprintf(stderr, "Error: Can't open file %s\n", av[1]);
+			exit(EXIT_FAILURE);
+		}
+		func_handle(fd);
+	}
+	else
+	{
+		printf("USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	return (0);
 }
