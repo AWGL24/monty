@@ -23,9 +23,9 @@ extern int value;
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -38,21 +38,11 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-typedef struct global_s
-{
-	char *func;
-	int num;
-	unsigned int lines;
-	stack_t **head;
-} global_v;
-
-extern global_v global;
-
-void func_handle(char *av);
+void func_handle(FILE *fd);
 int get_func_op(stack_t **stack, char *func, unsigned int line);
 void _push(stack_t **stack, int num);
 void freeMalloc(stack_t **stack);
