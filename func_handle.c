@@ -1,18 +1,13 @@
 #include "monty.h"
-
 /**
  * func_handle - function that handles a file
- * @ac: parameter
- * @av: parameter
+ * @fd: file
+ *
  * Return: 0
  */
-
-void free_grid(char **grid);
-
-void func_handle(char *av)
+void func_handle(FILE *fd)
 {
 	const char *delim = " \n\t\r";
-	FILE *fd = fopen(av, "r");
 	char *buffer = NULL;
 	char *token = NULL;
 	size_t BUFFSIZE = 0;
@@ -20,64 +15,31 @@ void func_handle(char *av)
 	unsigned int line = 1;
 	int num = 0;
 
-	if (!fd)
+	while (getline(&buffer, &BUFFSIZE, fd) != -1)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", av);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		while (getline(&buffer, &BUFFSIZE, fd) != -1)
+		token = strtok(buffer, delim);
+		if (token[0] == '#')
 		{
-			token = strtok(buffer, delim);
-			/*printf("Line number is: %d\n", line);
-			printf("token is: %s\n", token);*/
-			if (token[0] == '#')
+			continue;
+			line++;
+		}
+		else if (strncmp(token, "push", 4) == 0)
+		{
+			token = strtok(NULL, delim);
+			if (token != NULL)
 			{
-				continue;
-				line++;
-			}
-			else if (strncmp(token, "push", 4) == 0)
-			{
-				/*printf("Hi\n");
-				  printf("%s\n", token);*/
-				token = strtok(NULL, delim);
-				/*printf("%s\n", token);*/
-				if (token != NULL)
-				{
-					num = atoi(token);
-					_push(&head, num);
-				}
-				else
-				{
-					printf("L%d: usage: push integer\n", line);
-					exit (EXIT_FAILURE);
-				}
+				num = atoi(token);
+				_push(&head, num);
 			}
 			else
 			{
-				/*printf("Before get_func_op token is: %s\n", token);*/
-				get_func_op(&head, token, line);
+				printf("L%d: usage: push integer\n", line);
+				exit(EXIT_FAILURE);
 			}
 		}
-		if (ferror(fd))
-		{
-			perror("Error:");
-		}
-		free(token);
-		fclose(fd);
+		else
+			get_func_op(&head, token, line);
 	}
+	free(token);
+	fclose(fd);
 }
-
-/*void free_grid(char **grid)
-  {
-  int i = 0;
-
-  while (grid[i] != NULL && grid[i + 1] != NULL )
-  {
-  printf("%s\n", grid[i]);
-  free(grid[i]);
-  i++;
-  }
-  free(grid);
-  }*/
