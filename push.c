@@ -1,10 +1,10 @@
 #include "monty.h"
-int value;
-
 /**
  * _push - function that pushes an element to the stack
- * @stack: 
+ * @stack: stack of elements of doubly linked list
+ * @num: Num next to push
  *
+ * Return: void
  */
 
 void _push(stack_t **stack, int num)
