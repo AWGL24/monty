@@ -54,7 +54,7 @@ extern global_v global;
 
 void func_handle(char *av);
 int get_func_op(stack_t **stack, char *func, unsigned int line);
-void _push(stack_t **stack, unsigned int line);
+void _push(stack_t **stack, int num);
 void freeMalloc(stack_t **stack);
 void pop(stack_t **stack, unsigned int count);
 void pall(stack_t **stack, unsigned int count);
