@@ -43,8 +43,11 @@ void func_handle(char *av)
 				  printf("%s\n", token);*/
 				token = strtok(NULL, delim);
 				/*printf("%s\n", token);*/
-				num = atoi(token);
-				_push(&head, num);
+				if (token != NULL)
+				{
+					num = atoi(token);
+					_push(&head, num);
+				}
 			}
 			else
 			{
