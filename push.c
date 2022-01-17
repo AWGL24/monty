@@ -7,16 +7,15 @@ int value;
  *
  */
 
-void _push(stack_t **stack, unsigned int line)
+void _push(stack_t **stack, int num)
 {
 	stack_t *new_node = NULL;
-	(void)line;
 
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 		exit(EXIT_FAILURE);
 
-	new_node->n = value;
+	new_node->n = num;
 	new_node->next = *stack;
 	new_node->prev = NULL;
 
