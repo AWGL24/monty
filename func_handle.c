@@ -48,6 +48,11 @@ void func_handle(char *av)
 					num = atoi(token);
 					_push(&head, num);
 				}
+				else
+				{
+					printf("L%d: usage: push integer\n", line);
+					exit (EXIT_FAILURE);
+				}
 			}
 			else
 			{
