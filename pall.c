@@ -1,7 +1,12 @@
 #include "monty.h"
 /**
- * @brief 
- * 
+ * pall - Function that prints all the values on the
+ * the stack from top to bottom.
+ * @stack: Contains elements of doubly linked list
+ * @count: Line number in which the function call was
+ * found
+ *
+ * Return: void
  */
 void pall(stack_t **stack, unsigned int count)
 {
