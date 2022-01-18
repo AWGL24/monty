@@ -41,6 +41,6 @@ void func_handle(FILE *fd)
 			get_func_op(&head, token, line);
 		line++;
 	}
-	free(token);
+	free(buffer);
 	fclose(fd);
 }
