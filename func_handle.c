@@ -39,6 +39,7 @@ void func_handle(FILE *fd)
 		}
 		else
 			get_func_op(&head, token, line);
+		line++;
 	}
 	free(token);
 	fclose(fd);
