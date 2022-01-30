@@ -4,6 +4,7 @@
  * sub - Subtracts the top element of the stack from the
  * second top element of the stack
  * @stack: elements of doubly linked list
+ * @count: count of lines
  *
  * Return: void
  */

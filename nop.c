@@ -2,6 +2,8 @@
 
 /**
  * nop - Does nothing
+ * @stack: elements of doubly linked list
+ * @count: count of lines
  *
  * Return: void
  */
