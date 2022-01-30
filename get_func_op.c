@@ -16,6 +16,10 @@ int get_func_op(stack_t **stack, char *func, unsigned int line)
 	int x = 0;
 	instruction_t funcs[] = {
 		{"pall", pall},
+		{"pint", _pint},
+		{"pop", pop},
+		{"sub", sub},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 
@@ -23,6 +27,7 @@ int get_func_op(stack_t **stack, char *func, unsigned int line)
 	{
 		if (strcmp(func, funcs[x].opcode) == 0)
 		{
+			/*printf("Pint inside if statement\n");*/
 			funcs[x].f(stack, line);
 			return (0);
 		}

@@ -48,4 +48,9 @@ void _push(stack_t **stack, int num);
 void freeMalloc(stack_t **stack);
 void pop(stack_t **stack, unsigned int count);
 void pall(stack_t **stack, unsigned int count);
+void _pint(stack_t **stack, unsigned int count);
+void pop(stack_t **stack, unsigned int count);
+void sub(stack_t **stack, unsigned int count);
+void nop(stack_t **stack, unsigned int count);
+
 #endif /* _GNU_SOURCE */
